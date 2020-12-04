@@ -1,0 +1,21 @@
+---
+- name: Ensure SELinux is disabled
+  selinux:
+    state: disabled
+  become: yes
+  when: disable_selinux
+  tags: nginx-selinux
+
+- name: Include Nginx service tasks
+  include_tasks: "nginx-service.yml"
+  tags: nginx-service
+
+- name: Include Nginx secrets tasks
+  include_tasks: "nginx-secrets.yml"
+  when: install_secrets
+  tags: nginx-secrets
+
+- name: Include Nginx configuration tasks
+  include_tasks: "nginx-conf.yml"
+  when: configure_nginx
+  tags: nginx-config

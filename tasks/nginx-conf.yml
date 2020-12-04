@@ -1,0 +1,23 @@
+---
+- name: Copy Nginx basic configuration file
+  template:
+    src: 'nginx.conf.j2'
+    dest: '/etc/nginx/nginx.conf'
+    mode: '0644'
+  become: yes
+  notify: Restart Nginx
+  tags: nginx-config
+
+- name: Copy Nginx configuration module files
+  template:
+    src: '{{ item }}.j2'
+    dest: '/etc/nginx/conf.d/{{ item }}'
+    mode: '0644'
+  with_items:
+  - robots.txt
+  - shared_headers.conf
+  - shared_ssl_configurations.conf
+  - static_file_headers.conf
+  become: yes
+  notify: Restart Nginx
+  tags: nginx-config
