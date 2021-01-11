@@ -1,3 +1,29 @@
 ---
-install_secrets: False
-disable_selinux: False
+# Control variables
+# ~~~~~~~~~~~~~~~~~
+#
+# Variables used to control the role execution.
+
+
+# Whether or not the role should deploy custom Nginx configurations or use the
+# default ones
+configure_nginx: True
+
+# Whether or not the role should disable selinux. Enabling SElinux may not be
+# supported.
+disable_selinux: True
+
+# SSL certificates
+# ~~~~~~~~~~~~~~~~
+#
+# Install ssl certificates that will be shared amongst virtual servers when no
+# server specific certificate is specified.
+#
+# Example:
+#
+# install_shared_ssl_certificate: True
+# ssl_shared_certificate_src: '~/.secrets/tls/example.com/fullchain1.pem'
+# ssl_shared_certificate_dest: '/etc/pki/tls/certs/example.com.pem'
+# ssl_shared_certificate_key_src: '~/.secrets/tls/example.com/privkey1.pem'
+# ssl_shared_certificate_key_dest: '/etc/pki/tls/private/example.com.pem'
+install_shared_ssl_certificate: False
