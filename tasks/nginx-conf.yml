@@ -1,4 +1,20 @@
 ---
+- name: Ensure required subdirectories exist
+  file:
+    path: '/etc/nginx/{{ item }}'
+    owner: root
+    group: root
+    state: 'directory'
+    mode: '0755'
+  with_items:
+    - 'conf.d'
+    - 'sites-available'
+    - 'sites-enabled'
+    - 'streams-available'
+    - 'streams-enabled'
+  become: yes
+  tags: nginx-config
+
 - name: Copy Nginx basic configuration file
   template:
     src: 'nginx.conf.j2'
@@ -8,16 +24,28 @@
   notify: Restart Nginx
   tags: nginx-config
 
+- name: Install shared Nginx SSL certificate
+  copy:
+    src: '{{ item.src }}'
+    dest: '{{ item.dest }}'
+    owner: 'root'
+    group: 'root'
+    mode: 600
+  with_items:
+  - src: '{{ ssl_shared_certificate_src }}'
+    dest: '{{ ssl_shared_certificate_dest }}'
+  - src: '{{ ssl_shared_certificate_key_src }}'
+    dest: '{{ ssl_shared_certificate_key_dest }}'
+  when: install_shared_ssl_certificate
+  become: yes
+  notify: Restart Nginx
+  tags: nginx-config
+
 - name: Copy Nginx configuration module files
   template:
-    src: '{{ item }}.j2'
-    dest: '/etc/nginx/conf.d/{{ item }}'
+    src: 'https.j2'
+    dest: '/etc/nginx/conf.d/https'
     mode: '0644'
-  with_items:
-  - robots.txt
-  - shared_headers.conf
-  - shared_ssl_configurations.conf
-  - static_file_headers.conf
   become: yes
   notify: Restart Nginx
   tags: nginx-config
