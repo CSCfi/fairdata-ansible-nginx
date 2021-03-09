@@ -16,14 +16,13 @@ disable_selinux: True
 # SSL certificates
 # ~~~~~~~~~~~~~~~~
 #
-# Install ssl certificates that will be shared amongst virtual servers when no
-# server specific certificate is specified.
+# Install a wildcard ssl certificate that will be used for virtual servers with no server specific certificate
+# specified.
 #
 # Example:
-#
-# install_shared_ssl_certificate: True
-# ssl_shared_certificate_src: '~/.secrets/tls/example.com/fullchain1.pem'
-# ssl_shared_certificate_dest: '/etc/pki/tls/certs/example.com.pem'
-# ssl_shared_certificate_key_src: '~/.secrets/tls/example.com/privkey1.pem'
-# ssl_shared_certificate_key_dest: '/etc/pki/tls/private/example.com.pem'
-install_shared_ssl_certificate: False
+# install_ssl_wildcard_certificate: True
+# ssl_wildcard_certificate_src: '~/.secrets/tls/example.com/fullchain1.pem'
+# ssl_wildcard_certificate_dest: '/etc/pki/tls/certs/example.com.pem'
+# ssl_wildcard_certificate_key_src: '~/.secrets/tls/example.com/privkey1.pem'
+# ssl_wildcard_certificate_key_dest: '/etc/pki/tls/private/example.com.pem'
+install_ssl_wildcard_certificate: False

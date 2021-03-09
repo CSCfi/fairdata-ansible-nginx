@@ -16,9 +16,9 @@ http {
                       '$status $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
 
-{% if install_shared_ssl_certificate %}
-    ssl_certificate {{ ssl_shared_certificate_dest }};
-    ssl_certificate_key {{ ssl_shared_certificate_key_dest }};
+{% if install_ssl_wildcard_certificate %}
+    ssl_certificate {{ ssl_wildcard_certificate_dest }};
+    ssl_certificate_key {{ ssl_wildcard_certificate_key_dest }};
 {% endif %}
 
     access_log on;
