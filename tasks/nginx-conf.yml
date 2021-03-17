@@ -24,7 +24,7 @@
   notify: Restart Nginx
   tags: nginx-config
 
-- name: Install shared Nginx SSL certificate
+- name: Install Nginx wildcard SSL certificate
   copy:
     src: '{{ item.src }}'
     dest: '{{ item.dest }}'
@@ -32,11 +32,11 @@
     group: 'root'
     mode: 600
   with_items:
-  - src: '{{ ssl_shared_certificate_src }}'
-    dest: '{{ ssl_shared_certificate_dest }}'
-  - src: '{{ ssl_shared_certificate_key_src }}'
-    dest: '{{ ssl_shared_certificate_key_dest }}'
-  when: install_shared_ssl_certificate
+  - src: '{{ ssl_wildcard_certificate_src }}'
+    dest: '{{ ssl_wildcard_certificate_dest }}'
+  - src: '{{ ssl_wildcard_certificate_key_src }}'
+    dest: '{{ ssl_wildcard_certificate_key_dest }}'
+  when: install_ssl_wildcard_certificate
   become: yes
   notify: Restart Nginx
   tags: nginx-config
