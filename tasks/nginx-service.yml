@@ -4,7 +4,8 @@
     name:
       - 'nginx'
       - 'nginx-mod-stream'
-    state: 'latest'
+    # state: present, in order not to upgrade any package to an untested version
+    state: present
   become: yes
   tags: nginx-service
 
