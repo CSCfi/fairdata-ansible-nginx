@@ -1,8 +1,11 @@
 ---
-- name: Ensure Nginx is installed
+- name: Ensure Nginx and required modules are installed
   yum:
-    name: 'nginx'
-    state: 'latest'
+    name:
+      - 'nginx'
+      - 'nginx-mod-stream'
+    # state: present, in order not to upgrade any package to an untested version
+    state: present
   become: yes
   tags: nginx-service
 
