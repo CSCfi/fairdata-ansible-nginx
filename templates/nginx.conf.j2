@@ -35,12 +35,8 @@ http {
     server_names_hash_bucket_size 128;
 
     include /etc/nginx/conf.d/https;
-    include /etc/nginx/sites-enabled/*;
-
-    # Load modular configuration files from the /etc/nginx/conf.d directory.
-    # See http://nginx.org/en/docs/ngx_core_module.html#include
-    # for more information.
     include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/sites-enabled/*;
 }
 
 stream {
