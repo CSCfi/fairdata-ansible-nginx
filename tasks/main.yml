@@ -12,5 +12,4 @@
 
 - name: Include Nginx configuration tasks
   include_tasks: "nginx-conf.yml"
-  when: configure_nginx
   tags: nginx-config
