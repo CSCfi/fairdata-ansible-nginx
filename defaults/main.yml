@@ -7,7 +7,7 @@
 
 # Whether or not the role should deploy custom Nginx configurations or use the
 # default ones
-configure_nginx: True
+configure_modular_nginx: False
 
 # Whether or not the role should disable selinux. Enabling SElinux may not be
 # supported.
