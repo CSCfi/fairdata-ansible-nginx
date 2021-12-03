@@ -20,7 +20,6 @@ disable_selinux: True
 # specified.
 #
 # Example:
-# install_ssl_wildcard_certificate: True
 # ssl_wildcard_certificate_src: '~/.secrets/tls/example.com/fullchain1.pem'
 # ssl_wildcard_certificate_dest: '/etc/pki/tls/certs/example.com.pem'
 # ssl_wildcard_certificate_key_src: '~/.secrets/tls/example.com/privkey1.pem'
