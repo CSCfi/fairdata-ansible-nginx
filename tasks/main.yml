@@ -1,4 +1,10 @@
 ---
+- name: Ensure sudo is installed
+  yum:
+    name: sudo
+    state: present
+  tags: download-sudo
+
 - name: Ensure SELinux is disabled
   selinux:
     state: disabled
