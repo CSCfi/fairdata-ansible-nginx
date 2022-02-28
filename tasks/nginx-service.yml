@@ -1,4 +1,8 @@
 ---
+- name: install EPEL repo
+  become: yes
+  yum: name=epel-release state=present
+
 - name: Ensure Nginx and required modules are installed
   yum:
     name:
